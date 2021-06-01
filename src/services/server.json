@@ -1,0 +1,313 @@
+{
+  "options": [
+    {
+      "key": "Exercicios",
+      "name": "Exercícios",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/fatmanager-3afb8.appspot.com/o/src%2Fassets%2FiconExercicio.svg?alt=media&token=c4fd143c-7b9c-46de-b20c-e684fdc45819"
+    },
+    {
+      "key": "Agua",
+      "name": "Água",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/fatmanager-3afb8.appspot.com/o/src%2Fassets%2FiconBottle.svg?alt=media&token=df861a90-c22f-46cb-abd4-ba1ef4f2c7e6"
+    },
+    {
+      "key": "Dados",
+      "name": "Dados",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/fatmanager-3afb8.appspot.com/o/src%2Fassets%2FiconDados.svg?alt=media&token=0dbe2c4d-535e-4a69-8fc2-f760e124e23a"
+    }
+  ],
+  "objetivos": [
+    {
+      "key": "perder_peso",
+      "title": "Perda de Peso"
+    },
+    {
+      "key": "hipertrofia",
+      "title": "Ganho de massa"
+    },
+    {
+      "key": "flexibilidade",
+      "title": "Flexibilidade"
+    },
+    {
+      "key": "resitencia",
+      "title": "Resistência"
+    }
+  ],
+  "exercicio": [
+    {
+      "id": 1,
+      "name": "Basquete",
+      "kcal": "10",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 2,
+      "name": "Boxe",
+      "kcal": "11",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 3,
+      "name": "Caminhando",
+      "kcal": "9",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 4,
+      "name": "Ciclismo",
+      "kcal": "6",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 5,
+      "name": "Compra no Supermercado",
+      "kcal": "5",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 6,
+      "name": "Corrida",
+      "kcal": "10",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 7,
+      "name": "Dança de Salão",
+      "kcal": "35",
+      "objetivo": [
+        "perder_peso",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 8,
+      "name": "Dançando rápido",
+      "kcal": "10",
+      "objetivo": [
+        "perder_peso",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 9,
+      "name": "Futebol",
+      "kcal": "9",
+      "objetivo": [
+        "perder_peso",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 10,
+      "name": "Ginástica aeróbica",
+      "kcal": "6",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 11,
+      "name": "Ginástica olímpica",
+      "kcal": "6",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 12,
+      "name": "Handebol",
+      "kcal": "10",
+      "objetivo": [
+        "perder_peso",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 13,
+      "name": "Hidroginástica",
+      "kcal": "6",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 14,
+      "name": "Jiu-jitsu",
+      "kcal": "12",
+      "objetivo": [
+        "perder_peso",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 16,
+      "name": "Judô",
+      "kcal": "12",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 17,
+      "name": "Mountain bike",
+      "kcal": "12",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 18,
+      "name": "Musculação",
+      "kcal": "5",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 19,
+      "name": "Natação",
+      "kcal": "8",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 20,
+      "name": "Remo",
+      "kcal": "11",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 21,
+      "name": "Squash",
+      "kcal": "13",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 22,
+      "name": "Subir escada",
+      "kcal": "17",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 23,
+      "name": "Surf",
+      "kcal": "8",
+      "objetivo": [
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 24,
+      "name": "Tênis",
+      "kcal": "8",
+      "objetivo": [
+        "perder_peso",
+        "hipertrofia",
+        "flexibilidade",
+        "resitencia"
+      ],
+      "like": "true"
+    },
+    {
+      "id": 25,
+      "name": "Vôlei",
+      "kcal": "6",
+      "objetivo": [
+        "perder_peso",
+        "resitencia"
+      ],
+      "like": "false"
+    },
+    {
+      "id": 26,
+      "name": "Windsurf",
+      "kcal": "7",
+      "objetivo": [
+        "resitencia"
+      ],
+      "like": "false"
+    }
+  ]
+}
