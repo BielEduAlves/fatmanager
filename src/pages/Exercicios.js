@@ -32,24 +32,11 @@ import api from '../services/api';
 import colors from '../styles/colors';
 import { color } from 'react-native-reanimated';
 
-interface ObjetivosProps {
-  key: string;
-  title: string;
-}
-
-interface ExerciciosListProps {
-  id: number;
-  name: string;
-  kcal: number;
-  objetivo: [string];
-  like: boolean;
-}
-
 
 export function Exercicios() {
-  const [objetivos, setObjetivos] = useState<ObjetivosProps[]>([]);
-  const [exercicios, setExercicios] = useState<ExerciciosListProps[]>([]);
-  const [filteredExercicios, setFilteredeExercicios] = useState<ExerciciosListProps[]>([]);
+  const [objetivos, setObjetivos] = useState([]);
+  const [exercicios, setExercicios] = useState([]);
+  const [filteredExercicios, setFilteredeExercicios] = useState([]);
   const [objetivosSelected, setObjetivosSelected] = useState('all');
   const [loading, setLoading] = useState(true);
 
@@ -57,7 +44,7 @@ export function Exercicios() {
   const [loadingMore, setloadingMore] = useState(true);
   const [loadedAll, setLoadAll] = useState(false);
 
-  function handleObjetivosSelected(objetivo: string) {
+  function handleObjetivosSelected() {
     setObjetivosSelected(objetivo);
 
     if (objetivo == 'all')
@@ -84,7 +71,7 @@ export function Exercicios() {
     setloadingMore(false);
   }
 
-  function handleFecthMore(distance: number) {
+  function handleFecthMore() {
     if (distance < 1)
       return;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, } from 'react-native';
 
 import {
@@ -6,11 +6,17 @@ import {
   OlaText,
   NameText,
   ContainerFoto,
+  ButtonLogout,
+  ButtonLogoutText
 } from '../styles/header';
 
 import iconCam from "../assets/iconCam.png";
+import { AuthContext } from '../contexts/auth';
 
-export const Header = () => {
+export default function Header() {
+  const { user, signOut } = useContext(AuthContext);
+
+
   return (
     <ContaineHeader>
       <OlaText>
@@ -22,6 +28,13 @@ export const Header = () => {
       <ContainerFoto>
         <Image source={iconCam} />
       </ContainerFoto>
+      <ButtonLogout
+        onPress={() => { signOut() }}
+      >
+        <ButtonLogoutText>
+          Sair
+        </ButtonLogoutText>
+      </ButtonLogout>
     </ContaineHeader>
   );
 }

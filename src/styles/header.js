@@ -31,3 +31,22 @@ export const ContainerFoto = styled.View`
   position:absolute;
   right:0;
 `;
+export const ButtonLogout = styled.TouchableOpacity`
+  flex:1;
+  position: absolute;
+  right: 100px;
+  width:50px;
+  height: 30px;
+  background-color: ${props => props.invert ? "#fff" : colors.red};
+  border:1px solid ${colors.red};
+  border-radius:5px;
+  justify-content:center;
+  align-items:center;
+  margin-right:${props => props.theme ? "10px" : "0px"};
+`;
+
+export const ButtonLogoutText = styled.Text`
+  color:${props => props.invert ? colors.red : "#fff"};
+  font-size:12px;
+  font-family:${fonts.complement}
+`;

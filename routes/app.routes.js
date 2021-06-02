@@ -11,7 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { Feather } from '@expo/vector-icons'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();

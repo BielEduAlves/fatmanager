@@ -1,35 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import { FlatList, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   ContaineDados,
   ContainerOptions,
 } from '../styles/home';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { CardOptions } from '../components/CardOptions';
 import { Load } from '../components/load';
 import api from '../services/api';
-interface OptionsProps {
-  key: string;
-  name: string;
-  photo: string;
-}
+
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+import { AuthContext } from '../contexts/auth';
+import { ButtonLogoutText } from '../styles/header';
+
 export function Home() {
-  const [options, setOptions] = useState<OptionsProps[]>([]);
+  const { user } = useContext(AuthContext);
+  const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+
+  const ListenUpdateOptions = (snap) => {
+    const data = snap.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data()
+      }
+      console.log(data);
+
+
+    })
+    setOptions(data);
+    setLoading(false);
+  }
   useEffect(() => {
-    async function fetchOptions() {
-      const { data } = await api.get('options');
-      setOptions(data);
-      setLoading(false)
-    }
-    fetchOptions();
+    firebase.firestore().collection('options').orderBy('position', 'asc').onSnapshot(ListenUpdateOptions);
+
   }, [])
-  function handleOptionSelect(option: OptionsProps) {
+  function handleOptionSelect() {
     navigation.navigate(option.key, {});
   }
+
   if (loading)
     return <Load />
 
@@ -38,6 +52,8 @@ export function Home() {
       <Container>
         <Header />
         <ContaineDados>
+
+
         </ContaineDados>
         <ContainerOptions>
           <FlatList
@@ -58,4 +74,3 @@ export function Home() {
     </>
   );
 }
-

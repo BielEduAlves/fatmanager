@@ -7,12 +7,15 @@ import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
 
-const Routes: React.FC = () => {
+import { AuthContext } from '../src/contexts/auth';
 
+const Routes = () => {
+
+  const { user } = useContext(AuthContext);
 
   return (
     <NavigationContainer>
-      {false ?
+      {user ?
         <AppRoutes />
         :
         <AuthRoutes />

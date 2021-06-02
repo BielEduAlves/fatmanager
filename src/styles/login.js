@@ -56,7 +56,7 @@ export const InputTexto = styled.Text`
   font-size:18px;
   color:${colors.input};
 `;
-export const TextInput = styled.TextInput`
+export const Input = styled.TextInput`
   border-bottom-width:1px;
   border-color:${colors.gray};  
   color:${colors.input};
@@ -94,6 +94,31 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
+  color:${props => props.invert ? colors.red : "#fff"};
+  font-size:16px;
+  font-family:${fonts.complement}
+`;
+
+
+/*Cadastro*/
+
+export const ContainerCadastroFoto = styled.View`
+  flex-direction:row;
+  margin:20px 0 20px 0;
+`;
+export const ButtonFoto = styled.TouchableOpacity`
+  flex:1;
+  width:100%;
+  height: 60px;
+  background-color: ${props => props.invert ? "#fff" : colors.red};
+  border:1px solid ${colors.red};
+  border-radius:5px;
+  justify-content:center;
+  align-items:center;
+  margin-right:${props => props.theme ? "10px" : "0px"};
+`;
+
+export const ButtonFotoText = styled.Text`
   color:${props => props.invert ? colors.red : "#fff"};
   font-size:16px;
   font-family:${fonts.complement}
