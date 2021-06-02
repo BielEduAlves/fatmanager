@@ -11,37 +11,29 @@ import {
   ContainerButtons,
   Button,
   ButtonText,
+  ContainerCadastroFoto,
+  ButtonFoto,
+  ButtonFotoText,
+  ContainerFoto
 } from '../styles/login';
+
 import logoImg from "../assets/logo.png";
 
 import { AuthContext } from '../contexts/auth';
 
 
 export function Cadastro() {
-  const { signIn, signUp } = useContext(AuthContext);
+  const { signUp } = useContext(AuthContext);
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
-  function handleSignIn() {
-
-    try {
-      signIn(email, password)
-    } catch (err) {
-      console.warn(err)
-    }
-  }
-
   function handleSignUp() {
-    setCarregando(true);
     try {
-      signUp(email, password)
+      signUp(nome, email, password)
     } catch (err) {
       console.warn(err)
-    } finally {
-      setCarregando(false);
     }
   }
 
@@ -53,7 +45,7 @@ export function Cadastro() {
         </Logo>
         <CaixaTextoChamada>
           <TextoChamada>
-            Cadastro
+            Preencha os campos
           </TextoChamada>
         </CaixaTextoChamada>
         <CaixaLogin>
@@ -86,15 +78,10 @@ export function Cadastro() {
 
         <ContainerButtons>
           <Button
-            invert={true}
+            invert={false}
             onPress={() => { handleSignUp() }}
           >
-            <ButtonText invert={true} >Cadastar</ButtonText>
-          </Button>
-          <Button
-            onPress={() => { handleSignIn() }}
-          >
-            <ButtonText>Logar</ButtonText>
+            <ButtonText invert={false} >Cadastar</ButtonText>
           </Button>
         </ContainerButtons>
       </Container>

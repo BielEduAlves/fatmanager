@@ -21,7 +21,7 @@ import { AuthContext } from '../contexts/auth';
 
 export default function Login() {
   const { signIn, signUp } = useContext(AuthContext);
-  const navigation = useNavigation();
+
 
 
   const [email, setEmail] = useState('');
@@ -36,7 +36,11 @@ export default function Login() {
   }
 
   function handleSignUp() {
-    navigation.navigate('Cadastro', {});
+    try {
+      signUp(email, password)
+    } catch (err) {
+      console.warn(err)
+    }
   }
 
   return (

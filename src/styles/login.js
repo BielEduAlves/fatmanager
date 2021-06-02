@@ -103,23 +103,36 @@ export const ButtonText = styled.Text`
 /*Cadastro*/
 
 export const ContainerCadastroFoto = styled.View`
-  flex-direction:row;
-  margin:20px 0 20px 0;
+  
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  margin:0 0 0 0;
 `;
 export const ButtonFoto = styled.TouchableOpacity`
-  flex:1;
-  width:100%;
-  height: 60px;
+  height: 32px;
+  padding: 5px 15px;
   background-color: ${props => props.invert ? "#fff" : colors.red};
   border:1px solid ${colors.red};
   border-radius:5px;
   justify-content:center;
   align-items:center;
-  margin-right:${props => props.theme ? "10px" : "0px"};
+  margin:10px 0 0 0;
 `;
 
 export const ButtonFotoText = styled.Text`
-  color:${props => props.invert ? colors.red : "#fff"};
+  color:${colors.white};
   font-size:16px;
   font-family:${fonts.complement}
+`;
+
+export const ContainerFoto = styled.View`
+  justify-content:center;
+  align-items:center;
+  padding:0 10px 0px 10px;
+  width:110px;
+  height:110px;
+  border-radius:60px;
+  background-color:${colors.red_dark};
 `;
