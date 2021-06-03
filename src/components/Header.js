@@ -1,5 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Image, } from 'react-native';
+
+import * as ImagePicker from 'expo-image-picker';
+import firebase from 'firebase';
+import 'firebase/storage';
 
 import {
   ContaineHeader,
@@ -7,15 +11,50 @@ import {
   NameText,
   ContainerFoto,
   ButtonLogout,
-  ButtonLogoutText
+  ButtonLogoutText,
+  Avatar,
 } from '../styles/header';
 
 import iconCam from "../assets/iconCam.png";
 import { AuthContext } from '../contexts/auth';
 
+
 export default function Header() {
   const { perfil, signOut } = useContext(AuthContext);
+  const [imagem, setImagem] = useState(null);
+  console.log(perfil);
+  const uploadImagem = async (uri) => {
+    const imagelocal = await fetch(uri)
+    const blob = await imagelocal.blob()
+    const filename = new Date().getTime()
 
+    let ref = firebase.storage().ref().child('avatar/' + perfil.uid + '/' + filename)
+
+    ref.put(blob).then(function (image) {
+      image.ref.getDownloadURL().then(function (downloadURL) {
+        setImagem(downloadURL)
+      })
+    })
+  }
+
+
+  const escolherImagem = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      uploadImagem(result.uri);
+
+    }
+  }
+  console.log('image');
+  console.log(imagem);
 
   return (
     <ContaineHeader>
@@ -25,8 +64,17 @@ export default function Header() {
       <NameText>
         {perfil.nome}
       </NameText>
-      <ContainerFoto>
-        <Image source={iconCam} />
+      <ContainerFoto
+        onPress={() => { escolherImagem() }}
+      >
+
+        {imagem ?
+          <Avatar source={{ uri: imagem }} />
+          :
+          <Image source={iconCam} />
+        }
+
+
       </ContainerFoto>
       <ButtonLogout
         onPress={() => { signOut() }}

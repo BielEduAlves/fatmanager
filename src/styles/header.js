@@ -20,7 +20,7 @@ export const NameText = styled.Text`
   font-size:32px;
   color:${colors.heading};
 `;
-export const ContainerFoto = styled.View`
+export const ContainerFoto = styled.TouchableOpacity`
   justify-content:center;
   align-items:center;
   padding:0 10px 0px 10px;
@@ -44,7 +44,11 @@ export const ButtonLogout = styled.TouchableOpacity`
   align-items:center;
   margin-right:${props => props.theme ? "10px" : "0px"};
 `;
-
+export const Avatar = styled.Image`
+  width:80px;
+  height:80px;
+  border-radius:40px;
+`;
 export const ButtonLogoutText = styled.Text`
   color:${props => props.invert ? colors.red : "#fff"};
   font-size:12px;

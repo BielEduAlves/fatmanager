@@ -24,4 +24,6 @@ yarn add lottie-react-native
 yarn add axios
 
 expo install expo-app-loading
+
+expo install expo-image-picker
 ```
