@@ -9,6 +9,7 @@ export const Container = styled.View`
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
+  margin-top: 25px;
   padding:10px 20px 0px 20px;
   width:100%;
   background-color:${colors.background};

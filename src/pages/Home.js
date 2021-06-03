@@ -9,19 +9,22 @@ import {
 import Header from '../components/Header';
 import { CardOptions } from '../components/CardOptions';
 import { Load } from '../components/load';
-import api from '../services/api';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
 
 import { AuthContext } from '../contexts/auth';
-import { ButtonLogoutText } from '../styles/header';
+
 
 export function Home() {
-  const { user } = useContext(AuthContext);
+
+  const { user, perfil } = useContext(AuthContext);
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
   const navigation = useNavigation();
+
 
   const ListenUpdateOptions = (snap) => {
     const data = snap.docs.map((doc) => {
@@ -29,16 +32,12 @@ export function Home() {
         id: doc.id,
         ...doc.data()
       }
-      console.log(data);
-
-
     })
     setOptions(data);
     setLoading(false);
   }
   useEffect(() => {
     firebase.firestore().collection('options').orderBy('position', 'asc').onSnapshot(ListenUpdateOptions);
-
   }, [])
   function handleOptionSelect() {
     navigation.navigate(option.key, {});
@@ -52,7 +51,6 @@ export function Home() {
       <Container>
         <Header />
         <ContaineDados>
-
 
         </ContaineDados>
         <ContainerOptions>

@@ -14,7 +14,7 @@ import iconCam from "../assets/iconCam.png";
 import { AuthContext } from '../contexts/auth';
 
 export default function Header() {
-  const { user, signOut } = useContext(AuthContext);
+  const { perfil, signOut } = useContext(AuthContext);
 
 
   return (
@@ -23,7 +23,7 @@ export default function Header() {
         Olá,
       </OlaText>
       <NameText>
-        Gabriel
+        {perfil.nome}
       </NameText>
       <ContainerFoto>
         <Image source={iconCam} />

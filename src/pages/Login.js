@@ -34,7 +34,6 @@ export default function Login() {
       console.warn(err)
     }
   }
-
   function handleSignUp() {
     try {
       signUp(email, password)
@@ -42,9 +41,7 @@ export default function Login() {
       console.warn(err)
     }
   }
-
   return (
-
     <Container >
       <Logo>
         <Image source={logoImg} />

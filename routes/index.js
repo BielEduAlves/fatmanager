@@ -4,19 +4,25 @@ import { View, ActivityIndicator } from 'react-native';
 
 
 import AuthRoutes from './auth.routes';
+
 import AppRoutes from './app.routes';
+import PerfilRoutes from './perfil.routes';
 
 
 import { AuthContext } from '../src/contexts/auth';
 
 const Routes = () => {
 
-  const { user } = useContext(AuthContext);
+  const { user, perfil } = useContext(AuthContext);
 
   return (
+
     <NavigationContainer>
       {user ?
-        <AppRoutes />
+        perfil ?
+          <AppRoutes />
+          :
+          <PerfilRoutes />
         :
         <AuthRoutes />
       }

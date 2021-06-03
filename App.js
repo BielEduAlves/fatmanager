@@ -1,5 +1,5 @@
 import React from 'react';
-import { } from 'react-native';
+import { LogBox } from 'react-native';
 import 'react-native-gesture-handler';
 import AppLoading from 'expo-app-loading';
 import {
@@ -12,6 +12,7 @@ import { AuthProvider } from './src/contexts/auth';
 import Routes from './routes';
 import './src/services/firebase'
 export default function App() {
+  LogBox.ignoreLogs(['Setting a timer']);
   let [fontsLoaded] = useFonts({
     Jost_400Regular,
     Jost_600SemiBold
@@ -19,8 +20,9 @@ export default function App() {
   if (!fontsLoaded)
     return <AppLoading />
   return (
-    <AuthProvider>
+
+    < AuthProvider >
       <Routes />
-    </AuthProvider>
+    </AuthProvider >
   );
 }

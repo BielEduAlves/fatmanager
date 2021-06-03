@@ -39,7 +39,7 @@ height:120%;
 position:absolute;
 `;
 
-export const CaixaLogin = styled.View`
+export const CaixaLogin = styled.ScrollView`
   background-color:#fff;
   width:100%;
   height:50%;
