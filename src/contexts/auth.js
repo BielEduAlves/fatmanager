@@ -4,9 +4,7 @@ import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-
 const AuthContext = createContext({});
-
 const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);

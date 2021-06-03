@@ -18,13 +18,10 @@ import {
 } from '../styles/login';
 
 import logoImg from "../assets/logo.png";
-
 import { AuthContext } from '../contexts/auth';
-
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
-
 
 export default function Perfil() {
   const { user, signUp, createProfile } = useContext(AuthContext);
@@ -32,7 +29,6 @@ export default function Perfil() {
   const [altura, setAltura] = useState('');
   const [peso, setPeso] = useState('');
   const [sexo, setSexo] = useState('');
-
 
   const handleCreateProfile = () => {
     try {
@@ -51,13 +47,11 @@ export default function Perfil() {
       console.warn(err)
     }
   }
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
       style={{ flex: 1 }}
     >
-
       <Container>
         <Logo>
           <Image source={logoImg} />
@@ -68,9 +62,7 @@ export default function Perfil() {
           </TextoChamada>
         </CaixaTextoChamada>
         <CaixaLogin>
-
           <ContainerInputs>
-
             <Input
               placeholder="Digite seu Nome"
               onChangeText={text => setNome(text)}
@@ -91,13 +83,8 @@ export default function Perfil() {
               onChangeText={text => setSexo(text)}
               value={sexo}
             />
-
           </ContainerInputs>
-
-
         </CaixaLogin>
-
-
         <ContainerButtons>
           <Button
             invert={false}
@@ -107,7 +94,6 @@ export default function Perfil() {
           </Button>
         </ContainerButtons>
       </Container>
-
     </KeyboardAvoidingView>
   );
 }

@@ -12,20 +12,13 @@ import { Load } from '../components/load';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
-
 import { AuthContext } from '../contexts/auth';
 
-
 export function Home() {
-
   const { user, perfil } = useContext(AuthContext);
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-
   const navigation = useNavigation();
-
-
   const ListenUpdateOptions = (snap) => {
     const data = snap.docs.map((doc) => {
       return {
@@ -45,13 +38,11 @@ export function Home() {
 
   if (loading)
     return <Load />
-
   return (
     <>
       <Container>
         <Header />
         <ContaineDados>
-
         </ContaineDados>
         <ContainerOptions>
           <FlatList
@@ -65,7 +56,6 @@ export function Home() {
             )}
             numColumns={2}
             showsVerticalScrollIndicator={false}
-
           />
         </ContainerOptions>
       </Container>
