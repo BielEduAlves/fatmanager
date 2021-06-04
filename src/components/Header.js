@@ -22,7 +22,7 @@ import { AuthContext } from '../contexts/auth';
 export default function Header() {
   const { perfil, signOut } = useContext(AuthContext);
   const [imagem, setImagem] = useState(null);
-  console.log(perfil);
+
   const uploadImagem = async (uri) => {
     const imagelocal = await fetch(uri)
     const blob = await imagelocal.blob()
@@ -32,7 +32,25 @@ export default function Header() {
 
     ref.put(blob).then(function (image) {
       image.ref.getDownloadURL().then(function (downloadURL) {
+
+        firestore().collection('perfil').doc(perfil.user_id).update({
+          'avatar': downloadURL,
+        })
+          .then(() => {
+            console.log('User updated!');
+          });
+
+
+
         setImagem(downloadURL)
+
+
+
+
+        setImagem(downloadURL)
+
+
+
       })
     })
   }
@@ -46,16 +64,11 @@ export default function Header() {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       uploadImagem(result.uri);
-
     }
   }
-  console.log('image');
   console.log(imagem);
-
   return (
     <ContaineHeader>
       <OlaText>
@@ -67,13 +80,11 @@ export default function Header() {
       <ContainerFoto
         onPress={() => { escolherImagem() }}
       >
-
         {imagem ?
           <Avatar source={{ uri: imagem }} />
           :
           <Image source={iconCam} />
         }
-
 
       </ContainerFoto>
       <ButtonLogout

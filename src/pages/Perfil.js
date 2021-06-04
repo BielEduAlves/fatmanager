@@ -24,7 +24,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 export default function Perfil() {
-  const { user, signUp, createProfile } = useContext(AuthContext);
+  const { user, perfil, createProfile } = useContext(AuthContext);
   const [nome, setNome] = useState('');
   const [altura, setAltura] = useState('');
   const [peso, setPeso] = useState('');

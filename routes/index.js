@@ -14,9 +14,7 @@ import { AuthContext } from '../src/contexts/auth';
 const Routes = () => {
 
   const { user, perfil } = useContext(AuthContext);
-  console.log(perfil)
   return (
-
     <NavigationContainer>
       {user ?
         perfil ?

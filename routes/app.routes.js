@@ -41,10 +41,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen
       name="Dados" component={Dados}
     />
-
-
-
-
   </HomeStack.Navigator>
 )
 

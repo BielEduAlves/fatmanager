@@ -12,12 +12,11 @@ const AuthProvider = ({ children }) => {
   const [perfil, setPerfil] = useState(null);
 
   const listenAuth = (useState) => {
-    setUserId(useState.uid);
     setUser(useState)
-  }
 
-  const criarPerfil = (perfilData) => {
-    const data = perfilData.docs.map((doc) => {
+  }
+  const iniciarPerfil = async (perfilData) => {
+    const data = await perfilData.docs.map((doc) => {
       return {
         uid: doc.data().user_id,
         nome: doc.data().nome,
@@ -28,12 +27,11 @@ const AuthProvider = ({ children }) => {
         imc: (Number(doc.data().pesagem.peso) / (Number(doc.data().altura) + Number(doc.data().altura))).toFixed(2)
       }
     })
-    data == '' ? setPerfil() : setPerfil(data.reduce(function (item) { }));
+    data == '' ? setPerfil(data) : setPerfil(data.reduce(function (item) { }));
   }
   useEffect(() => {
-    firebase.firestore().collection('perfil').where('user_id', '==', userId).onSnapshot(criarPerfil)
+    firebase.firestore().collection('perfil').where('user_id', '==', user.uid).onSnapshot(iniciarPerfil)
   }, [])
-
   useEffect(() => {
     return firebase.auth().onAuthStateChanged(listenAuth)
   }, [])
@@ -57,7 +55,7 @@ const AuthProvider = ({ children }) => {
   const signOut = () => {
     firebase.auth().signOut()
       .then(resp => {
-        console.log('Deslogado com sucesso')
+        console.warn('Deslogado com sucesso')
       })
       .catch(err => {
         console.warn(err)
