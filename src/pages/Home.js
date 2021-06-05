@@ -19,6 +19,7 @@ export function Home() {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+
   const ListenUpdateOptions = (snap) => {
     const data = snap.docs.map((doc) => {
       return {
@@ -32,10 +33,10 @@ export function Home() {
   useEffect(() => {
     firebase.firestore().collection('options').orderBy('position', 'asc').onSnapshot(ListenUpdateOptions);
   }, [])
-  function handleOptionSelect() {
+
+  function handleOptionSelect(option) {
     navigation.navigate(option.key, {});
   }
-
   if (loading)
     return <Load />
   return (

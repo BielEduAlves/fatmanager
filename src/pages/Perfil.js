@@ -11,10 +11,6 @@ import {
   ContainerButtons,
   Button,
   ButtonText,
-  ContainerCadastroFoto,
-  ButtonFoto,
-  ButtonFotoText,
-  ContainerFoto
 } from '../styles/login';
 
 import logoImg from "../assets/logo.png";
@@ -32,7 +28,7 @@ export default function Perfil() {
 
   const handleCreateProfile = () => {
     try {
-      firebase.firestore().collection('perfil').add({
+      firebase.firestore().collection('perfil').doc(user.email).set({
         user_id: user.uid,
         nome: nome,
         altura: altura,

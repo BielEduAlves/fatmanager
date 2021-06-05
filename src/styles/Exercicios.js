@@ -78,7 +78,8 @@ export const ContainerOptions = styled.View`
 `;
 export const ContainerButtons = styled.View`
   flex-direction:row;
-  margin:5px 0 0 0;
+  margin:5px 0 5px 0;
+  padding:0 5px;
 `;
 export const Button = styled.TouchableOpacity`
   flex:1;

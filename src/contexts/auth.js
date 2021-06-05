@@ -13,28 +13,36 @@ const AuthProvider = ({ children }) => {
 
   const listenAuth = (useState) => {
     setUser(useState)
-
+    setUserId(useState.uid);
   }
+
   const iniciarPerfil = async (perfilData) => {
     const data = await perfilData.docs.map((doc) => {
       return {
+        docId: doc.id,
         uid: doc.data().user_id,
         nome: doc.data().nome,
         altura: doc.data().altura,
         Peso: doc.data().pesagem.peso,
         sexo: doc.data().sexo,
-        criado_em: doc.data().nome,
+        criado_em: doc.data().criado_em,
+        avatar: doc.data().avatar,
         imc: (Number(doc.data().pesagem.peso) / (Number(doc.data().altura) + Number(doc.data().altura))).toFixed(2)
       }
     })
-    data == '' ? setPerfil(data) : setPerfil(data.reduce(function (item) { }));
+    data == '' ? setPerfil() : setPerfil(data.reduce(function (item) { }));
+    console.log(userId);
   }
+
+
   useEffect(() => {
-    firebase.firestore().collection('perfil').where('user_id', '==', user.uid).onSnapshot(iniciarPerfil)
+    firebase.firestore().collection('perfil').where('user_id', '==', 'WVYj39j10XeOlVaexehaw1YFyRE2').onSnapshot(iniciarPerfil)
   }, [])
+
   useEffect(() => {
     return firebase.auth().onAuthStateChanged(listenAuth)
   }, [])
+
   const signUp = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(resp => {
@@ -55,10 +63,10 @@ const AuthProvider = ({ children }) => {
   const signOut = () => {
     firebase.auth().signOut()
       .then(resp => {
-        console.warn('Deslogado com sucesso')
+        console.log('Deslogado com sucesso')
       })
       .catch(err => {
-        console.warn(err)
+        console.log(err)
       })
   }
   return (

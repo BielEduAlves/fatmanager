@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Image, } from 'react-native';
+import { Feather, FontAwesome5 } from '@expo/vector-icons';
 
 import * as ImagePicker from 'expo-image-picker';
 import firebase from 'firebase';
 import 'firebase/storage';
+import 'firebase/firestore';
 
 import {
   ContaineHeader,
@@ -15,6 +17,7 @@ import {
   Avatar,
 } from '../styles/header';
 
+import colors from '../styles/colors';
 import iconCam from "../assets/iconCam.png";
 import { AuthContext } from '../contexts/auth';
 
@@ -22,31 +25,27 @@ import { AuthContext } from '../contexts/auth';
 export default function Header() {
   const { perfil, signOut } = useContext(AuthContext);
   const [imagem, setImagem] = useState(null);
-
   const uploadImagem = async (uri) => {
     const imagelocal = await fetch(uri)
     const blob = await imagelocal.blob()
     const filename = new Date().getTime()
 
+
     let ref = firebase.storage().ref().child('avatar/' + perfil.uid + '/' + filename)
 
     ref.put(blob).then(function (image) {
       image.ref.getDownloadURL().then(function (downloadURL) {
+        try {
+          firebase.firestore().collection('perfil').doc(perfil.docId).update({
+            'avatar': downloadURL,
+          })
+            .then(() => {
+              console.log('User updated!');
+            });
 
-        firestore().collection('perfil').doc(perfil.user_id).update({
-          'avatar': downloadURL,
-        })
-          .then(() => {
-            console.log('User updated!');
-          });
-
-
-
-        setImagem(downloadURL)
-
-
-
-
+        } catch (err) {
+          console.warn(err)
+        }
         setImagem(downloadURL)
 
 
@@ -68,7 +67,6 @@ export default function Header() {
       uploadImagem(result.uri);
     }
   }
-  console.log(imagem);
   return (
     <ContaineHeader>
       <OlaText>
@@ -80,8 +78,8 @@ export default function Header() {
       <ContainerFoto
         onPress={() => { escolherImagem() }}
       >
-        {imagem ?
-          <Avatar source={{ uri: imagem }} />
+        {perfil.avatar ?
+          <Avatar source={{ uri: perfil.avatar }} />
           :
           <Image source={iconCam} />
         }
@@ -90,9 +88,8 @@ export default function Header() {
       <ButtonLogout
         onPress={() => { signOut() }}
       >
-        <ButtonLogoutText>
-          Sair
-        </ButtonLogoutText>
+        <ButtonLogoutText>Sair</ButtonLogoutText>
+        <FontAwesome5 name="sign-out-alt" size={15} color={colors.red2} />
       </ButtonLogout>
     </ContaineHeader>
   );

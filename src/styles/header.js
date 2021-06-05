@@ -32,17 +32,12 @@ export const ContainerFoto = styled.TouchableOpacity`
   right:0;
 `;
 export const ButtonLogout = styled.TouchableOpacity`
-  flex:1;
+  flex-direction: row;
   position: absolute;
-  right: 100px;
-  width:50px;
-  height: 30px;
-  background-color: ${props => props.invert ? "#fff" : colors.red};
-  border:1px solid ${colors.red};
-  border-radius:5px;
+  right: 90px;
+  bottom: 0;
   justify-content:center;
   align-items:center;
-  margin-right:${props => props.theme ? "10px" : "0px"};
 `;
 export const Avatar = styled.Image`
   width:80px;
@@ -50,7 +45,8 @@ export const Avatar = styled.Image`
   border-radius:40px;
 `;
 export const ButtonLogoutText = styled.Text`
-  color:${props => props.invert ? colors.red : "#fff"};
+  color:${colors.red};
   font-size:12px;
-  font-family:${fonts.complement}
+  font-family:${fonts.complement};
+  margin-right: 5px;
 `;

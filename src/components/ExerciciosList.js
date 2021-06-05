@@ -9,47 +9,55 @@ import {
   OptionListLabelData,
   OptionsImage,
   OptionsListImageFav,
+  OptionListContainer
 } from '../styles/ExercicioList'
 
 import iconFav1 from "../assets/iconFav1.png";
 import iconFav0 from "../assets/iconFav0.png";
 import { } from 'react';
 
-interface ExerciciosListProps extends RectButtonProps {
-  data: {
-    id: number;
-    name: string;
-    kcal: number;
-    like: boolean;
-  }
-}
 
-export const ExerciciosList = ({ data, ...rest }: ExerciciosListProps) => {
+export const ExerciciosList = ({ data, ...rest }) => {
   const [favorito, setFavorito] = useState(Boolean(data.like));
+  const [selected, setSelected] = useState(null);
+
+
 
   function handleFavorito() {
+    favorito ? setFavorito(false) : setFavorito(true)
+  }
+  function handleSelect(data) {
+    console.log('atual: ', selected);
+    setSelected(data.id);
 
-    if (favorito) {
-      setFavorito(false)
-    } else {
-      setFavorito(true)
-    }
+
+
+    console.log('ultimo: ', selected);
   }
 
 
   return (
 
-    <OptionList
+    <OptionListContainer>
+      <OptionList
+        {...rest}
+        onPress={() => {
+          handleSelect(data);
+        }}
+        ativo={
 
-      {...rest}
-    >
-      <OptionListLabel>
-        {data.name}
-      </OptionListLabel>
+          selected == data.id ? true : false
+        }
+      >
+        <OptionListLabel>
+          {data.nome}
+        </OptionListLabel>
 
-      <OptionListLabelData>
-        {data.kcal} Kcal/min
-      </OptionListLabelData>
+        <OptionListLabelData>
+          {data.kcal} Kcal/min
+        </OptionListLabelData>
+      </OptionList >
+
       <OptionsListImageFav
         onPress={() => {
           handleFavorito();
@@ -63,9 +71,7 @@ export const ExerciciosList = ({ data, ...rest }: ExerciciosListProps) => {
 
 
       </OptionsListImageFav>
-
-    </OptionList >
-
+    </OptionListContainer>
 
   );
 }

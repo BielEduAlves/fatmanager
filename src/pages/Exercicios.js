@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Image, FlatList, ActivityIndicator } from 'react-native';
 
+import firebase from 'firebase';
+import 'firebase/firestore';
+
 import {
   Container,
   ContainerTop,
@@ -44,9 +47,8 @@ export function Exercicios() {
   const [loadingMore, setloadingMore] = useState(true);
   const [loadedAll, setLoadAll] = useState(false);
 
-  function handleObjetivosSelected() {
+  function handleObjetivosSelected(objetivo) {
     setObjetivosSelected(objetivo);
-
     if (objetivo == 'all')
       return setFilteredeExercicios(exercicios)
 
@@ -56,48 +58,54 @@ export function Exercicios() {
     setFilteredeExercicios(filtered);
   }
 
-  async function fetchExercicios() {
-    const { data } = await api.get(`exercicio?_sort=name&order=asc&_page=${page}&_limit=8`);
+  function handleChangeExercicios(exerciocio) {
+    // console.log(exerciocio);
 
+    /*if (objetivo == 'all')
+      return setFilteredeExercicios(exercicios)
 
-    if (page > 1) {
-      setExercicios(oldValue => [...oldValue, ...data]);
-      setFilteredeExercicios(oldValue => [...oldValue, ...data]);
-    } else {
-      setExercicios(data);
-      setFilteredeExercicios(data);
-      setLoading(false)
-    }
-    setloadingMore(false);
+    const filtered = exercicios.filter(exercicio =>
+      exercicio.objetivo.includes(objetivo)
+    );
+    setFilteredeExercicios(filtered);
+    */
   }
 
-  function handleFecthMore() {
-    if (distance < 1)
-      return;
-
-    setloadingMore(true);
-    setPage(oldValue => oldValue + 1);
-    fetchExercicios();
+  const fetchExercicios = (snap) => {
+    const data = snap.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data()
+      }
+    })
+    setExercicios(data);
+    setLoading(false);
   }
-
-
   useEffect(() => {
-    fetchExercicios();
-  }, []);
+    firebase.firestore().collection('exercicios').orderBy('id', 'asc').onSnapshot(fetchExercicios);
+  }, [])
 
+  const fetchObjetivos = (snap) => {
+    const data = snap.docs.map((doc) => {
+      return {
+        ...doc.data()
+      }
+    })
+    setObjetivos([
+      {
+        key: 'all',
+        title: 'Todos',
+      },
+      ...data
+    ]);
+
+    setLoading(false);
+  }
   useEffect(() => {
-    async function fetchObjetivos() {
-      const { data } = await api.get('objetivos?_sort=title');
-      setObjetivos([
-        {
-          key: 'all',
-          title: 'Todos',
-        },
-        ...data
-      ]);
-    }
-    fetchObjetivos();
-  }, []);
+    firebase.firestore().collection('objetivo').onSnapshot(fetchObjetivos);
+  }, [])
+
+
 
   if (loading)
     return <Load />
@@ -145,22 +153,16 @@ export function Exercicios() {
             data={filteredExercicios}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
-              <ExerciciosList data={item} />
+              <ExerciciosList data={item}
+                onPress={() => handleChangeExercicios(item)}
+                active={item.key === objetivosSelected}
+              />
             )}
-
             showsVerticalScrollIndicator={false}
-            onEndReachedThreshold={0.1}
-            onEndReached={({ distanceFromEnd }) =>
-              handleFecthMore(distanceFromEnd)
-            }
-            ListFooterComponent={
-              loadingMore
-                ? <ActivityIndicator color={colors.red_light} />
-                : <></>
-            }
           />
 
         </ContainerOptions>
+
         <ContainerButtons>
           <Button>
             <ButtonText>

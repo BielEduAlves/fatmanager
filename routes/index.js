@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, ActivityIndicator } from 'react-native';
-
 
 import AuthRoutes from './auth.routes';
 
@@ -12,7 +10,7 @@ import PerfilRoutes from './perfil.routes';
 import { AuthContext } from '../src/contexts/auth';
 
 const Routes = () => {
-
+  // console.log(perfil);
   const { user, perfil } = useContext(AuthContext);
   return (
     <NavigationContainer>

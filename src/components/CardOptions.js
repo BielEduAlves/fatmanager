@@ -10,19 +10,7 @@ import {
   Options,
 } from '../styles/home'
 
-interface CardOptionsProps extends RectButtonProps {
-  data: {
-    name: string;
-    photo: string,
-  }
-}
-
-import iconCam from "../assets/iconCam.png";
-import iconExercicio from "../assets/iconExercicio.png";
-import iconAgua from "../assets/iconAgua.png";
-import iconChart from "../assets/iconChart.png";
-
-export const CardOptions = ({ data, ...rest }: CardOptionsProps) => {
+export const CardOptions = ({ data, ...rest }) => {
   return (
 
     <Options
